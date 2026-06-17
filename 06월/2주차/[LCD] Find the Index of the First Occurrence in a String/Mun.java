@@ -1,18 +1,20 @@
-class Mun {
-    public int searchInsert(int[] nums, int target) {
-        int end = nums.length - 1;
-        int front = 0;
-        while(front <= end) {
-            int mid = (end + front) / 2;
-            int n = nums[mid];
-            if(n > target) {
-                end = mid - 1;
-            } else if (n < target) {
-                front = mid + 1;
-            } else {
-                return mid;
+class Solution {
+    public int strStr(String haystack, String needle) {
+        int len = needle.length();
+
+        for(int i=0;i<haystack.length()-len+1;i++) {
+            boolean same = true;
+            for(int j=0;j<len;j++) {
+                if(haystack.charAt(i+j) != needle.charAt(j)) {
+                    same = false;
+                    break;
+                }
+            }
+            if(same) {
+                return i;
             }
         }
-        return front;
+
+        return -1;
     }
 }
